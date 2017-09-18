@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e170d0b6-643a-4a5f-a1e6-75ef795636dd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/content/getusermedia/gum/index.html" afterPath="$PROJECT_DIR$/src/content/getusermedia/gum/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/content/getusermedia/gum/js/main.js" afterPath="$PROJECT_DIR$/src/content/getusermedia/gum/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/common.js" afterPath="$PROJECT_DIR$/src/js/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/lib/ga.js" afterPath="$PROJECT_DIR$/src/js/lib/ga.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/server.js" afterPath="$PROJECT_DIR$/test/server.js" />
-    </list>
+    <list default="true" id="e170d0b6-643a-4a5f-a1e6-75ef795636dd" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -449,12 +440,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1505701796867</updated>
-      <workItem from="1505701798989" duration="17376000" />
+      <workItem from="1505701798989" duration="17552000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17376000" />
+    <option name="totallyTimeSpent" value="17552000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="834" extended-state="6" />
