@@ -17,7 +17,7 @@
   <meta itemprop="name" content="WebRTC code samples">
   <meta name="mobile-web-app-capable" content="yes">
   <meta id="theme-color" name="theme-color" content="#ffffff">
-
+<!--메타태그 : 검색엔진에게 문서를 요약하는 기능-->
   <base target="_blank">
 
   <title>WebRTC samples</title>
@@ -174,9 +174,10 @@
     <a href="https://github.com/webrtc/samples" title="View the repository" id="viewSource">github.com/webrtc/samples</a>
 
   </div>
-
+<!--첫 페이지의 html소스들 -->
   <script src="src/js/lib/ga.js"></script>
-
+<!--ga.js는 구글 애널릭틱스의 추적코드 라이브러리
+ 자세히 : http://blog.kindler.io/google-analytics/-->
   <script type="application/javascript">
   var isSecureOrigin = location.protocol === 'https:' ||
       location.hostname === 'localhost';
@@ -186,6 +187,7 @@
     location.protocol = 'HTTPS';
   }
   </script>
-
+<!-- 직관적으로 코드를 읽을 수 있듯이 프로토콜을 https로 바꿔준다? I'm not sure..
+자세히 : https://github.com/webrtc/samples/issues/794-->
 </body>
 </html>

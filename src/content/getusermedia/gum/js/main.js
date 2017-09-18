@@ -10,6 +10,7 @@
 
 var errorElement = document.querySelector('#errorMsg');
 var video = document.querySelector('video');
+//document.querySelector는 자바스크립트가 속한 도큐먼트의 video 태그를 반환한다, #는 id를 의미 .는 class를 의미
 
 // Put variables in global scope to make them available to the browser console.
 var constraints = window.constraints = {

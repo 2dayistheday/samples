@@ -39,7 +39,7 @@
     <h1><a href="//webrtc.github.io/samples/" title="WebRTC samples homepage">WebRTC samples</a> <span>getUserMedia</span></h1>
 
     <video id="gum-local" autoplay></video>
-
+<!-- 비디오 태그-->
     <div id="errorMsg"></div>
 
     <p class="warning"><strong>Warning:</strong> if you're not using headphones, pressing play will cause feedback.</p>
@@ -52,9 +52,13 @@
   </div>
 
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <!-- adapter-latest.js는 다른 플랫폼, 환경에서도 동작하도록 어댑터 역할을 한다.
+  자세히 : https://github.com/webrtc/adapter-->
   <script src="../../../js/common.js"></script>
+  <!-- 자바스크립트 표준을 위한 것
+  자세히 : http://d2.naver.com/helloworld/12864-->
   <script src="js/main.js"></script>
-
+<!-- js폴더 안의 main.js와 연결된다 -->
   <script src="../../../js/lib/ga.js"></script>
 
 </body>

@@ -24,8 +24,9 @@
   },
   "devDependencies": {
     "eslint-config-webrtc": "^1.0.0",
-    "express": "^4.14.1",
+    "express": "^4.15.4",
     "faucet": "0.0.1",
+    "geckodriver": "1.4.0",
     "grunt": "^0.4.5",
     "grunt-cli": ">=0.1.9",
     "grunt-contrib-compress": "^0.13.0",
@@ -33,9 +34,9 @@
     "grunt-eslint": "^17.2.0",
     "grunt-githooks": "^0.3.1",
     "grunt-htmlhint": ">=0.9.12",
-    "pem": "^1.9.4",
-    "webrtc-utilities": "^1.0.0",
-    "geckodriver": "1.4.0",
-    "selenium-webdriver": "3.3.0"
+    "pem": "^1.11.0",
+    "selenium-webdriver": "3.3.0",
+    "webrtc-utilities": "^1.0.0"
   }
 }
+//패키지 관리에 사용된다. npm install로 package의 모듈을 빠르게 설치할 수 있다.

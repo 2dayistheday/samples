@@ -5,3 +5,5 @@
 
 ga('create', 'UA-48530561-1', 'auto');
 ga('send', 'pageview');
+
+//구글 애널리틱스 추적을 위한 자바스크립트
