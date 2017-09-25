@@ -17,6 +17,8 @@ var constraints = window.constraints = {
   audio: false,
   video: true
 };
+//constraints는 video나 audio트랙을 요청하는지 여부
+//자세히 : https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints
 
 function handleSuccess(stream) {
   var videoTracks = stream.getVideoTracks();
@@ -28,6 +30,8 @@ function handleSuccess(stream) {
   window.stream = stream; // make variable available to browser console
   video.srcObject = stream;
 }
+//stream은 MediaStream API
+//자세히 : https://developer.mozilla.org/en-US/docs/Web/API/MediaStream
 
 function handleError(error) {
   if (error.name === 'ConstraintNotSatisfiedError') {
@@ -50,3 +54,8 @@ function errorMsg(msg, error) {
 
 navigator.mediaDevices.getUserMedia(constraints).
     then(handleSuccess).catch(handleError);
+//navigator는 브라우저의 정보를 담고있는 객체
+//자세히 : https://opentutorials.org/course/1363/6650
+//개발자 도구의 console에서 navigator의 정보를 알 수 있다
+//getUserMedia은 audio or video의 접근 권한을 얻고, 성공콜백 > handleSuccess, 실패콜백 > handleError.
+//자세히 : https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia

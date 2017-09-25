@@ -25,7 +25,8 @@ function handleSuccess(stream) {
   };
   window.stream = stream; // make variable available to browser console
   audio.srcObject = stream;
-}
+}//오디오 트랙으로 현재 스트림의 정보 받아서 로그 출력
+//현재 오디오로 전송
 
 function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);

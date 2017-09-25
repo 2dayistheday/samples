@@ -65,3 +65,5 @@ module.exports = function(grunt) {
   // also possible to call JavaScript directly in registerTask()
   // or to call external tasks with grunt.loadTasks()
 };
+//신기하게도 .. 자바스크립트 빌드역할을 해준다.
+//자세히 : http://hatemogi.com/holiday-project-day-18/

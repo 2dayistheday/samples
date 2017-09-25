@@ -64,7 +64,7 @@ function gotStream(stream) {
   localVideo.srcObject = stream;
   localStream = stream;
   callButton.disabled = false;
-}
+}//접근권한 얻은 후 스트림을 local비디오로 전송
 
 function start() {
   trace('Requesting local stream');
@@ -72,7 +72,7 @@ function start() {
   navigator.mediaDevices.getUserMedia({
     audio: true,
     video: true
-  })
+  })//start btn을 누르면 카메라 접근권한을 얻는다
   .then(gotStream)
   .catch(function(e) {
     alert('getUserMedia() error: ' + e.name);
@@ -93,7 +93,7 @@ function call() {
     trace('Using audio device: ' + audioTracks[0].label);
   }
   var servers = null;
-  pc1 = new RTCPeerConnection(servers);
+  pc1 = new RTCPeerConnection(servers);//자세히 : https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection
   trace('Created local peer connection object pc1');
   pc1.onicecandidate = function(e) {
     onIceCandidate(pc1, e);

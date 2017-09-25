@@ -13,11 +13,12 @@ var video = document.querySelector('video');
 var canvas = window.canvas = document.querySelector('canvas');
 canvas.width = 480;
 canvas.height = 360;
+//기본적인 캔버스 해상도
 
 var button = document.querySelector('button');
-button.onclick = function() {
+button.onclick = function() {//버튼 클릭하면
   canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
+  canvas.height = video.videoHeight;//비디오해상도로 변경
   canvas.getContext('2d').
     drawImage(video, 0, 0, canvas.width, canvas.height);
 };

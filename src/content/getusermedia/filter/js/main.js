@@ -10,6 +10,7 @@
 
 var snapshotButton = document.querySelector('button#snapshot');
 var filterSelect = document.querySelector('select#filter');
+//필터 선택 select Tag,.. blur, grayscale, etc,..
 
 // Put variables in global scope to make them available to the browser console.
 var video = window.video = document.querySelector('video');
@@ -25,6 +26,7 @@ snapshotButton.onclick = function() {
 filterSelect.onchange = function() {
   video.className = filterSelect.value;
 };
+//필터 셀렉터 테그 변경 있을 때마다 비디오의 className에서 설정 변경
 
 var constraints = {
   audio: false,

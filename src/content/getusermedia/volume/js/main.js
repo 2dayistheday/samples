@@ -13,7 +13,7 @@
 var instantMeter = document.querySelector('#instant meter');
 var slowMeter = document.querySelector('#slow meter');
 var clipMeter = document.querySelector('#clip meter');
-
+//instant는 50ms마다, slow는 1초마다 바뀌는 audio 볼륨
 var instantValueDisplay = document.querySelector('#instant .value');
 var slowValueDisplay = document.querySelector('#slow .value');
 var clipValueDisplay = document.querySelector('#clip .value');
@@ -36,6 +36,7 @@ function handleSuccess(stream) {
   // browser console.
   window.stream = stream;
   var soundMeter = window.soundMeter = new SoundMeter(window.audioContext);
+  //soundMeter에 연결, 함수연결 생성
   soundMeter.connectToSource(stream, function(e) {
     if (e) {
       alert(e);

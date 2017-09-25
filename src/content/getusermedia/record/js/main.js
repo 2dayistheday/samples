@@ -92,7 +92,8 @@ function toggleRecording() {
     playButton.disabled = false;
     downloadButton.disabled = false;
   }
-}
+}//이 토글로 레코딩버튼이 클릭되면 버튼에 start있으면 녹화시작(func startRecording 실행)
+//아니면 스탑레코딩 동작(func stopRecording 실행)
 
 function startRecording() {
   recordedBlobs = [];
@@ -111,6 +112,7 @@ function startRecording() {
   }
   try {
     mediaRecorder = new MediaRecorder(window.stream, options);
+    //우선 mediaRecorder 변수에 저장하고, > handleDataAvailable 함수를 통해 recordedBlobs에 옮긴다
   } catch (e) {
     console.error('Exception while creating MediaRecorder: ' + e);
     alert('Exception while creating MediaRecorder: '
@@ -133,9 +135,9 @@ function stopRecording() {
   recordedVideo.controls = true;
 }
 
-function play() {
-  var superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
-  recordedVideo.src = window.URL.createObjectURL(superBuffer);
+function play() {//실행되면 저장했던 recordedBlobs을 비디오 src를 통해 재생
+var superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
+recordedVideo.src = window.URL.createObjectURL(superBuffer);
 }
 
 function download() {
@@ -150,5 +152,7 @@ function download() {
   setTimeout(function() {
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
+    //setTimeout에서는 100초 지나면 자동으로 createObjectURL 불러서 기존 객체 URL 해제합니다
+    //자세히 : https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL
   }, 100);
 }

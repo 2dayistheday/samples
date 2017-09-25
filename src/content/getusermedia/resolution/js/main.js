@@ -9,6 +9,7 @@
 'use strict';
 
 var dimensions = document.querySelector('#dimensions');
+//p 테그인데, 해당 비디오의 해상도를 표시할 것이다.
 var video = document.querySelector('video');
 var stream;
 
@@ -16,7 +17,7 @@ var vgaButton = document.querySelector('#vga');
 var qvgaButton = document.querySelector('#qvga');
 var hdButton = document.querySelector('#hd');
 var fullHdButton = document.querySelector('#full-hd');
-
+//각 해상도 버튼
 vgaButton.onclick = function() {
   getMedia(vgaConstraints);
 };
@@ -32,7 +33,7 @@ hdButton.onclick = function() {
 fullHdButton.onclick = function() {
   getMedia(fullHdConstraints);
 };
-
+//버튼을 클릭하면 getMedia함수에 해상도 옵션을 넣은 변수를(ex. qvgaContraints)같은 것을 넣는다
 var qvgaConstraints = {
   video: {width: {exact: 320}, height: {exact: 240}}
 };
@@ -70,6 +71,7 @@ function getMedia(constraints) {
       track.stop();
     });
   }
+//Returns a list of all MediaStreamTrack objects
 
   navigator.mediaDevices.getUserMedia(constraints)
   .then(gotStream)
@@ -77,5 +79,5 @@ function getMedia(constraints) {
     var message = 'getUserMedia error: ' + e.name;
     alert(message);
     console.log(message);
-  });
+  });//카메라 access얻어서 화질대로 보여주기 실행
 }
