@@ -110,6 +110,7 @@ function call() {
     onIceStateChange(pc2, e);
   };
   pc2.ontrack = gotRemoteStream;
+  //gotRemoteStream이 실제로 pc2에 스트림이 재생되게 됨
 
   localStream.getTracks().forEach(
     function(track) {

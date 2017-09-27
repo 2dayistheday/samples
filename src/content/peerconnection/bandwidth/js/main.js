@@ -37,7 +37,7 @@ var offerOptions = {
 
 function gotStream(stream) {
   hangupButton.disabled = false;
-  trace('Received local stream');
+  trace('Received local stream');//5
   localStream = stream;
   localVideo.srcObject = stream;
   localStream.getTracks().forEach(
@@ -48,7 +48,7 @@ function gotStream(stream) {
       );
     }
   );
-  trace('Adding Local Stream to peer connection');
+  trace('Adding Local Stream to peer connection');//6
 
   pc1.createOffer(
     offerOptions
@@ -73,33 +73,36 @@ function onCreateSessionDescriptionError(error) {
 function call() {
   callButton.disabled = true;
   bandwidthSelector.disabled = false;
-  trace('Starting call');
+  trace('Starting call');//1
   var servers = null;
   var pcConstraints = {
     'optional': []
   };
   pc1 = new RTCPeerConnection(servers, pcConstraints);
-  trace('Created local peer connection object pc1');
-  pc1.onicecandidate = onIceCandidate.bind(pc1);
+  trace('Created local peer connection object pc1');//2
+  pc1.onicecandidate = onIceCandidate.bind(pc1);//8
+  //onIceCandidate는 이벤트가 발생햇을 때 호출 할 함수를 호출한다
+    //여기서는 bind가 이벤트.?고 pc1이 이벤트 발생 시 파라미터로...
+    //그렇다면 setLocalDescription는 bind와 연관이 있는건가??
 
   pc2 = new RTCPeerConnection(servers, pcConstraints);
-  trace('Created remote peer connection object pc2');
+  trace('Created remote peer connection object pc2');//3
   pc2.onicecandidate = onIceCandidate.bind(pc2);
   pc2.ontrack = gotRemoteStream;
 
-  trace('Requesting local stream');
+  trace('Requesting local stream');//4
   navigator.mediaDevices.getUserMedia({
     video: true
   })
-  .then(gotStream)
+  .then(gotStream)//연결되면 스트림시작
   .catch(function(e) {
     alert('getUserMedia() error: ' + e.name);
   });
 }
 
 function gotDescription1(desc) {
-  trace('Offer from pc1 \n' + desc.sdp);
-  pc1.setLocalDescription(desc).then(
+  trace('Offer from pc1 \n' + desc.sdp);//7 : pc1에서 받아달라 요청하는 단계 + 프로토
+  pc1.setLocalDescription(desc).then(//연결된 peer의 끝을 지정
     function() {
       pc2.setRemoteDescription(desc).then(
         function() {
@@ -117,8 +120,8 @@ function gotDescription1(desc) {
 
 function gotDescription2(desc) {
   pc2.setLocalDescription(desc).then(
-    function() {
-      trace('Answer from pc2 \n' + desc.sdp);
+    function() {//이제 연결된거
+      trace('Answer from pc2 \n' + desc.sdp);//10
       pc1.setRemoteDescription({
         type: desc.type,
         sdp: updateBandwidthRestriction(desc.sdp, '500')
@@ -133,7 +136,7 @@ function gotDescription2(desc) {
 }
 
 function hangup() {
-  trace('Ending call');
+  trace('Ending call');//end
   localStream.getTracks().forEach(function(track) {
     track.stop();
   });
@@ -149,9 +152,9 @@ function hangup() {
 function gotRemoteStream(e) {
   if (remoteVideo.srcObject !== e.streams[0]) {
     remoteVideo.srcObject = e.streams[0];
-    trace('Received remote stream');
-  }
-}
+    trace('Received remote stream');//bind 다음
+  }//첫 번째 스트림을 가져 와서 srcobject속성을 설정합니다 . 이렇게하면 해당 비디오 스트림이 요소에 연결되어 사용자에게 표시되기 시작합니다.
+}//자세히 : https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/ontrack
 
 function getOtherPc(pc) {
   return pc === pc1 ? pc2 : pc1;
@@ -169,7 +172,9 @@ function onIceCandidate(event) {
 
   trace(getName(this) + ' ICE candidate: \n' + (event.candidate ?
       event.candidate.candidate : '(null)'));
-}
+}//event = pc1 이나 pc2
+//event.candidate.candidate는 pc의 정보 프로토콜.. ip,..etc
+//중간에 pc1과 pc2가 event.candidate = false가 되는 이유는.??
 
 function onAddIceCandidateSuccess() {
   trace('AddIceCandidate success.');

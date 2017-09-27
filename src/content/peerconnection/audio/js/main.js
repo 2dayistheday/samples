@@ -14,8 +14,8 @@ var callButton = document.querySelector('button#callButton');
 var hangupButton = document.querySelector('button#hangupButton');
 var codecSelector = document.querySelector('select#codec');
 hangupButton.disabled = true;
-callButton.onclick = call;
-hangupButton.onclick = hangup;
+callButton.onclick = call; //call 버튼 누르면 call메서드 실행
+hangupButton.onclick = hangup; //hangup버튼 누르면 hangup메서드 실행
 
 var pc1;
 var pc2;
@@ -37,12 +37,12 @@ var offerOptions = {
 
 function gotStream(stream) {
   hangupButton.disabled = false;
-  trace('Received local stream');
+  trace('Received local stream');//5
   localStream = stream;
   var audioTracks = localStream.getAudioTracks();
   if (audioTracks.length > 0) {
     trace('Using Audio device: ' + audioTracks[0].label);
-  }
+  }//7
   localStream.getTracks().forEach(
     function(track) {
       pc1.addTrack(
@@ -51,7 +51,7 @@ function gotStream(stream) {
       );
     }
   );
-  trace('Adding Local Stream to peer connection');
+  trace('Adding Local Stream to peer connection');//8
 
   pc1.createOffer(
     offerOptions
@@ -76,23 +76,23 @@ function onCreateSessionDescriptionError(error) {
 function call() {
   callButton.disabled = true;
   codecSelector.disabled = true;
-  trace('Starting call');
+  trace('Starting call'); //1
   var servers = null;
   var pcConstraints = {
     'optional': []
   };
   pc1 = new RTCPeerConnection(servers, pcConstraints);
-  trace('Created local peer connection object pc1');
+  trace('Created local peer connection object pc1'); //2
   pc1.onicecandidate = function(e) {
     onIceCandidate(pc1, e);
   };
   pc2 = new RTCPeerConnection(servers, pcConstraints);
-  trace('Created remote peer connection object pc2');
+  trace('Created remote peer connection object pc2'); //3
   pc2.onicecandidate = function(e) {
     onIceCandidate(pc2, e);
   };
   pc2.ontrack = gotRemoteStream;
-  trace('Requesting local stream');
+  trace('Requesting local stream');//4
   navigator.mediaDevices.getUserMedia({
     audio: true,
     video: false
@@ -104,7 +104,7 @@ function call() {
 }
 
 function gotDescription1(desc) {
-  trace('Offer from pc1 \n' + desc.sdp);
+  trace('Offer from pc1 \n' + desc.sdp);//9
   pc1.setLocalDescription(desc).then(
     function() {
       desc.sdp = forceChosenAudioCodec(desc.sdp);
@@ -123,7 +123,7 @@ function gotDescription1(desc) {
 }
 
 function gotDescription2(desc) {
-  trace('Answer from pc2 \n' + desc.sdp);
+  trace('Answer from pc2 \n' + desc.sdp);//15
   pc2.setLocalDescription(desc).then(
     function() {
       desc.sdp = forceChosenAudioCodec(desc.sdp);
@@ -138,7 +138,7 @@ function gotDescription2(desc) {
 }
 
 function hangup() {
-  trace('Ending call');
+  trace('Ending call');//~끝
   localStream.getTracks().forEach(function(track) {
     track.stop();
   });
@@ -154,7 +154,7 @@ function hangup() {
 function gotRemoteStream(e) {
   if (audio2.srcObject !== e.streams[0]) {
     audio2.srcObject = e.streams[0];
-    trace('Received remote stream');
+    trace('Received remote stream');//14
   }
 }
 
@@ -177,11 +177,11 @@ function onIceCandidate(pc, event) {
     }
   );
   trace(getName(pc) + ' ICE candidate: \n' + (event.candidate ?
-      event.candidate.candidate : '(null)'));
+      event.candidate.candidate : '(null)'));//12
 }
 
 function onAddIceCandidateSuccess() {
-  trace('AddIceCandidate success.');
+  trace('AddIceCandidate success.');//13
 }
 
 function onAddIceCandidateError(error) {
@@ -207,7 +207,7 @@ function maybePreferCodec(sdp, type, dir, codec) {
     return sdp;
   }
 
-  trace('Prefer ' + str + ': ' + codec);
+  trace('Prefer ' + str + ': ' + codec); //10
 
   var sdpLines = sdp.split('\r\n');
 
@@ -219,7 +219,7 @@ function maybePreferCodec(sdp, type, dir, codec) {
 
   // If the codec is available, set it as the default in m line.
   var codecIndex = findLine(sdpLines, 'a=rtpmap', codec);
-  console.log('codecIndex', codecIndex);
+  console.log('codecIndex', codecIndex);//11
   if (codecIndex) {
     var payload = getCodecPayloadType(sdpLines[codecIndex]);
     if (payload) {
